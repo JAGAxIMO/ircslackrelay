@@ -4,5 +4,5 @@ RUN mkdir -p /usr/local/lib cd /usr/local/lib && wget --no-check-certificate --n
 RUN cd /usr/local/lib && wget https://dl.bintray.com/sbt/native-packages/sbt/0.13.7/sbt-0.13.7.tgz && tar zxvf sbt-0.13.7.tgz && ln -s sbt/bin/sbt /usr/bin/sbt
 RUN mkdir -p /app
 ADD ./ /app/ircslackrelay
-RUN cd /app/ircslackrelay && sbt assembly && cp ircslackrelay.conf /target/scala-2.11/
+RUN cd /app/ircslackrelay && /usr/local/lib/sbt/bin/sbt assembly && cp ircslackrelay.conf /target/scala-2.11/
 CMD ["java", "-jar", "-server", "/app/ircslackrelay/target/scala-2.11/ircslackrelay-assembly-1.3.0.jar"]
